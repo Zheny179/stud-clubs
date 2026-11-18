@@ -1,0 +1,29 @@
+{
+  "name": "project-root",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev:client": "pnpm --filter client dev",
+    "dev:server": "pnpm --filter server dev",
+    "build": "pnpm -r build",
+    "lint": "pnpm -r lint",
+    "lint:style": "pnpm --filter client lint:style",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,mjs,scss,css,json,md}\" --ignore-path .gitignore",
+    "format:check": "prettier --check --diff \"**/*.{js,jsx,ts,tsx,mjs,scss,css,json,md}\" --ignore-path .gitignore"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@types/node": "24.19.2",
+    "eslint": "10.14.0",
+    "eslint-config-prettier": "10.1.8",
+    "eslint-plugin-jsdoc": "50.6.1",
+    "globals": "17.13.0",
+    "prettier": "3.8.4",
+    "typescript": "~6.0.3",
+    "typescript-eslint": "8.72.1",
+    "zod": "4.6.7"
+  }
+}
