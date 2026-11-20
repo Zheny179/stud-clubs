@@ -1,0 +1,11 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="48" height="48" fill="#B28CF2"/>
+<path style='stroke: var(--neutral-800)' d="M14.625 22.4906L30.875 14.0378" stroke-width="2.5" stroke-linecap="round" stroke="#1E1F20"/>
+<path style='stroke: var(--neutral-800)' d="M30.875 14.0378L34.6244 26.1132" stroke-width="2.5" stroke-linecap="round" stroke="#1E1F20"/>
+<path style='stroke: var(--neutral-800)' d="M34.6244 26.1132L23.375 34.5661" stroke-width="2.5" stroke-linecap="round" stroke="#1E1F20"/>
+<path style='stroke: var(--neutral-800)' d="M23.375 34.566L14.625 22.4906" stroke-width="2.5" stroke-linecap="round" stroke="#1E1F20"/>
+<path style='fill: var(--neutral-800)'  d="M30.875 20.0755C34.3268 20.0755 37.125 17.3723 37.125 14.0377C37.125 10.7032 34.3268 8 30.875 8C27.4232 8 24.625 10.7032 24.625 14.0377C24.625 17.3723 27.4232 20.0755 30.875 20.0755Z" fill="#1E1F20"/>
+<path style='fill: var(--neutral-800)'  d="M14.625 27.9245C17.7316 27.9245 20.25 25.4917 20.25 22.4906C20.25 19.4895 17.7316 17.0566 14.625 17.0566C11.5184 17.0566 9 19.4895 9 22.4906C9 25.4917 11.5184 27.9245 14.625 27.9245Z" fill="#1E1F20"/>
+<path style='fill: var(--neutral-800)'  d="M34.625 30.3396C37.0412 30.3396 39 28.4474 39 26.1132C39 23.779 37.0412 21.8868 34.625 21.8868C32.2088 21.8868 30.25 23.779 30.25 26.1132C30.25 28.4474 32.2088 30.3396 34.625 30.3396Z" fill="#1E1F20"/>
+<path style='fill: var(--blue-800)'  d="M23.375 40C26.4816 40 29 37.5671 29 34.566C29 31.5649 26.4816 29.1321 23.375 29.1321C20.2684 29.1321 17.75 31.5649 17.75 34.566C17.75 37.5671 20.2684 40 23.375 40Z" fill="#2E4BA6"/>
+</svg>

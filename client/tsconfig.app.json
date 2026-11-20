@@ -3,7 +3,7 @@
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
     "target": "es2023",
     "strict": true,
-    "lib": ["ES2023", "DOM"],
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
     "module": "esnext",
     "types": ["vite/client"],
     "allowArbitraryExtensions": true,
@@ -25,6 +25,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
+    "allowJs": true,
     "noFallthroughCasesInSwitch": true
   },
   "include": ["src", "stylelint.config.mjs"]
