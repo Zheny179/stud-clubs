@@ -1,0 +1,17 @@
+.nav {
+  &__list {
+    display: flex;
+    gap: fluid(24, 10);
+    align-items: center;
+
+    @include mobile {
+      flex-direction: column;
+    }
+  }
+
+  &__link {
+    &--is-active {
+      color: var(--color-accent-secondary);
+    }
+  }
+}

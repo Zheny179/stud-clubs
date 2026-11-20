@@ -1,0 +1,47 @@
+.button {
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  border: none;
+
+  &__icon {
+    display: flex;
+  }
+
+  &--primary {
+    padding: fluid(8, 4) fluid(20, 5);
+    color: var(--color-text-primary);
+    background-color: var(--color-action-primary);
+    border-radius: var(--border-radius-12px);
+  }
+
+  &--burger-menu {
+    padding: fluid(8, 4);
+    color: var(--color-text-primary);
+    background-color: var(--color-action-primary);
+    border-radius: 50%;
+  }
+
+  &--icon,
+  &--icon-filled {
+    display: inline-flex;
+    border: var(--border-base);
+  }
+
+  &--icon {
+    padding: var(--space-2);
+    color: var(--color-text-secondary);
+    border-radius: 50%;
+  }
+
+  &--icon-filled {
+    padding: 2px;
+    color: var(--color-action-icon-filled);
+    background-color: var(--color-text-on-action);
+    border-radius: var(--border-radius-8px);
+  }
+
+  &.is-disabled {
+    @include disabled;
+  }
+}

@@ -1,0 +1,36 @@
+.logo {
+  color: var(--purple-300);
+  border-radius: var(--border-radius-4px);
+
+  @include hover {
+    color: var(--purple-600);
+
+    .logo__text {
+      color: var(--color-text-muted);
+      transition: var(--transition-base);
+    }
+  }
+
+  &__img {
+    width: fluid(48, 30);
+    height: auto;
+    border-radius: inherit;
+  }
+
+  &--text-right {
+    display: flex;
+    column-gap: var(--space-2);
+    align-items: center;
+  }
+
+  &--text-bottom {
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--space-2);
+    align-items: center;
+  }
+
+  &__text {
+    color: var(--color-text-primary);
+  }
+}
