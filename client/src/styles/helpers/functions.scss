@@ -1,23 +1,25 @@
-@use "sass:math";
-@use "constants" as *;
+@use 'sass:math';
+@use 'constants' as *;
 
-// $max — на desktop
-// $min — на mobile
-
-@function fluid($max: 100, $min: 10) {
-  $max-viewport-width: $container-desktop-width;
-  $min-viewport-width: 390;
+@function fluid(
+  $max: 100,
+  $min: 10,
+  // Дефолт — десктоп
+  $max-vw: $container-desktop-width,
+  // Дефолт — мобильный
+  $min-vw: 390
+) {
+  // Переводим пиксели в rem (делим на 16)
   $max-size: math.div($max, 16);
   $min-size: math.div($min, 16);
-  $max-width: math.div($max-viewport-width, 16);
-  $min-width: math.div($min-viewport-width, 16);
-  
+  $max-width: math.div($max-vw, 16);
+  $min-width: math.div($min-vw, 16);
   $slope: math.div(($max-size - $min-size), ($max-width - $min-width));
-  $y-axis-intersections: -$min-width * $slope + $min-size;
-  
+  $y-axis-intersection: -$min-width * $slope + $min-size;
+
   @return clamp(
     #{$min-size * 1rem},
-    #{$y-axis-intersections * 1rem} + #{$slope * 100vw},
+    #{$y-axis-intersection * 1rem} + #{$slope * 100vw},
     #{$max-size * 1rem}
   );
 }
