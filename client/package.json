@@ -13,9 +13,8 @@
     "preview": "vite preview",
     "typecheck": "tsc -b",
     "lint": "eslint .",
-    "lint:style": "stylelint \"src/**/*.{scss,css}\"",
     "lint:styles": "stylelint \"src/**/*.{scss,css}\"",
-    "lint:style:fix": "stylelint \"src/**/*.{scss,css}\" --fix"
+    "lint:styles:fix": "stylelint \"src/**/*.{scss,css}\" --fix"
   },
   "dependencies": {
     "@hookform/resolvers": "7.0.6",
