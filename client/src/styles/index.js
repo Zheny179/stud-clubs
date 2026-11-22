@@ -1,5 +1,5 @@
 import 'modern-normalize'
 import './fonts.scss'
-import './var.scss'
+import './tokens/index.scss'
 import './utils.scss'
 import './globals.scss'

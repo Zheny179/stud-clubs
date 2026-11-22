@@ -1,9 +1,9 @@
 .logo {
-  color: var(--purple-300);
-  border-radius: var(--border-radius-4px);
+  color: var(--logo-color);
+  border-radius: var(--border-radius-sm);
 
   @include hover {
-    color: var(--purple-600);
+    color: var(--logo-color-hover);
 
     .logo__text {
       color: var(--color-text-muted);
@@ -12,7 +12,7 @@
   }
 
   &__img {
-    width: fluid(48, 30);
+    width: var(--logo-size);
     height: auto;
     border-radius: inherit;
   }

@@ -6,7 +6,11 @@
 }
 
 // Красивый фокус при нажатии Tab
-@mixin focus-visible($color: var(--neutral-50), $offset: 4px, $style: dashed) {
+@mixin focus-visible(
+  $color: var(--color-accent-primary),
+  $offset: 4px,
+  $style: dashed
+) {
   outline: 2px $style $color;
   outline-offset: $offset;
   transition-duration: 0s !important;

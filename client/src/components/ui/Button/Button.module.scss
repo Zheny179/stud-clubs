@@ -9,17 +9,25 @@
   }
 
   &--primary {
-    padding: fluid(8, 4) fluid(20, 5);
+    padding: var(--space-2) var(--button-padding-x);
     color: var(--color-text-primary);
     background-color: var(--color-action-primary);
-    border-radius: var(--border-radius-12px);
+    border-radius: var(--border-radius-lg);
   }
 
   &--burger-menu {
-    padding: fluid(8, 4);
+    padding: var(--space-2);
     color: var(--color-text-primary);
     background-color: var(--color-action-primary);
     border-radius: 50%;
+
+    @include hover {
+      background-color: var(--color-action-primary-hover);
+    }
+
+    &:active {
+      background-color: var(--color-action-primary-active);
+    }
   }
 
   &--icon,
@@ -36,9 +44,9 @@
 
   &--icon-filled {
     padding: 2px;
-    color: var(--color-action-icon-filled);
-    background-color: var(--color-text-on-action);
-    border-radius: var(--border-radius-8px);
+    color: var(--color-text-on-action);
+    background-color: var(--color-action-soft);
+    border-radius: var(--border-radius-md);
   }
 
   &.is-disabled {
