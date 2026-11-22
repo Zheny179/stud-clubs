@@ -13,6 +13,9 @@
       "@/components*": ["./src/components/*"]
     },
 
+    "exactOptionalPropertyTypes": "true",
+    "noUncheckedIndexedAccess": "true",
+
     /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
