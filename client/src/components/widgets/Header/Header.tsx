@@ -3,8 +3,15 @@ import { Button } from '@/components/ui/Button'
 import { Logo } from '@/components/ui/Logo'
 import { Navigation } from '@/components/ui/Navigation'
 import { MOBILE_NAV_ITEMS } from '@/constants/navigation'
+import clsx from 'clsx'
 import { Search, Sun, Menu, X } from 'lucide-react'
-import { useEffect, useRef } from 'react'
+import {
+  useEffect,
+  useRef,
+  useState,
+  type SyntheticEvent,
+  type TransitionEvent,
+} from 'react'
 import { useLocation } from 'react-router'
 
 /**
@@ -12,15 +19,41 @@ import { useLocation } from 'react-router'
  */
 function Header() {
   const dialogRef = useRef<HTMLDialogElement>(null)
+  const [isOpen, setIsOpen] = useState(false)
   const { pathname } = useLocation()
 
   const openMenu = () => {
-    dialogRef.current?.showModal()
+    const dialogElement = dialogRef.current
+    if (!dialogElement || dialogElement.open) {
+      return
+    }
+
+    dialogElement.showModal()
     document.documentElement.classList.add('is-lock')
+
+    requestAnimationFrame(() => {
+      setIsOpen(true)
+    })
   }
+
   const closeMenu = () => {
-    dialogRef.current?.close()
+    setIsOpen(false)
     document.documentElement.classList.remove('is-lock')
+  }
+
+  const handleTransitionEnd = (e: TransitionEvent<HTMLDialogElement>) => {
+    if (
+      e.target === dialogRef.current &&
+      e.propertyName === 'clip-path' &&
+      !isOpen
+    ) {
+      dialogRef.current?.close()
+    }
+  }
+
+  const handleCancel = (e: SyntheticEvent<HTMLDialogElement>) => {
+    e.preventDefault()
+    closeMenu()
   }
 
   useEffect(() => {
@@ -33,19 +66,16 @@ function Header() {
     }
   }, [])
 
-  const handleBackdropClick = (e: React.MouseEvent<HTMLDialogElement>) => {
-    if (e.target === dialogRef.current) {
-      closeMenu()
-    }
-  }
-
   return (
     <header className={styles.header}>
       <div className={styles.header__left}>
         <Logo />
         <Navigation className="hidden-mobile" />
       </div>
-      <div className={styles.header__search}>
+      <form
+        role="search"
+        className={styles.header__search}
+      >
         <Search
           className={styles['header__search-icon']}
           size={18}
@@ -58,7 +88,7 @@ function Header() {
           aria-label="Поиск по клубам и событиям"
           placeholder="Поиск по клубам и событиям…"
         />
-      </div>
+      </form>
 
       <div className={styles.header__actions}>
         <Button
@@ -69,8 +99,8 @@ function Header() {
         />
 
         <Button
-          to="/sign"
-          className="hidden-mobile"
+          to="/login"
+          className={clsx(styles['header__actions-login'], 'hidden-mobile')}
           label="Войти"
         />
 
@@ -79,6 +109,8 @@ function Header() {
           className="visible-mobile"
           icon={<Menu size={24} />}
           label="Открыть меню"
+          aria-controls="overlay-menu"
+          aria-haspopup="dialog"
           isLabelHidden
           onClick={openMenu}
         />
@@ -86,15 +118,18 @@ function Header() {
 
       <dialog
         id="overlay-menu"
-        className={styles['overlay-menu']}
+        className={`${styles['overlay-menu']} ${isOpen ? styles['is-open'] : ''}`}
         ref={dialogRef}
-        onClick={handleBackdropClick}
-        onClose={closeMenu}
+        onCancel={handleCancel}
+        onTransitionEnd={handleTransitionEnd}
         aria-label="Основное меню"
       >
         <div className={styles['overlay-menu__inner']}>
           <div className={styles['overlay-menu__top']}>
-            <Logo isText />
+            <Logo
+              isText
+              onClick={closeMenu}
+            />
             <Button
               mode="burger-menu"
               type="button"

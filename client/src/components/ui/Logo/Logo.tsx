@@ -7,6 +7,7 @@ interface LogoProps {
   className?: string
   isText?: boolean
   positionText?: 'right' | 'bottom'
+  onClick?: () => void
 }
 
 /**
@@ -17,7 +18,7 @@ interface LogoProps {
  * @param {'right' | 'bottom'} [props.positionText] - Расположение текста относительно иконки.
  */
 function Logo(props: LogoProps) {
-  const { className, isText = false, positionText = 'right' } = props
+  const { className, isText = false, positionText = 'right', onClick } = props
 
   return (
     <Link
@@ -27,7 +28,8 @@ function Logo(props: LogoProps) {
         className
       )}
       to="/"
-      aria-label="StudClubs — на главную"
+      aria-label="На главную страницу"
+      onClick={onClick}
     >
       <LogoIcon
         className={styles.logo__img}
