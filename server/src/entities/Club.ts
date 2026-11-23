@@ -58,6 +58,7 @@ interface ClubProps {
 /** */
 interface CreateClubProps {
   categoryId: string,
+  tagsId?: string[],
 
   name: string,
   shortDescription: string,
@@ -121,7 +122,6 @@ export class Club extends Entity<ClubProps> {
       id: randomUUID(),
       // TODO: Сделать полноченную логику работы и заменить заглушки
       slug: 'заглушка',
-      tagsId: ['tag', 'tag'],
       version: 1,
       createdAt: now,
       lastVerified: now,
@@ -169,7 +169,6 @@ export class Club extends Entity<ClubProps> {
   private get media(): MediaSlot[] | undefined { return this.props.media }
 
   // === checkFunctions ===
-
   private checkVersion = (): void => {
     if (!(this.version >= 1)) {
       throw new Error('incorrect version club')
