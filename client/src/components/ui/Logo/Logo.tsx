@@ -4,10 +4,10 @@ import { clsx } from 'clsx'
 import { Link } from 'react-router'
 
 interface LogoProps {
-  className?: string
-  isText?: boolean
-  positionText?: 'right' | 'bottom'
-  onClick?: () => void
+  className?: string | undefined
+  isText?: boolean | undefined
+  positionText?: 'right' | 'bottom' | undefined
+  onClick?: () => void | undefined
 }
 
 /**
