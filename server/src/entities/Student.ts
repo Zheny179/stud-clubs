@@ -76,7 +76,6 @@ export class Student extends Entity<StudentProps> {
 
     this.checkEmail()
     this.checkPhoneNumber()
-
     this.checkEnrollmentEndDate()
     this.checkGraduationYear()
   }
@@ -208,7 +207,7 @@ export class Student extends Entity<StudentProps> {
     }
 
     if (
-      this.enrollmentDate !== undefined &&
+      this.enrollmentEndDate !== undefined &&
       this.enrollmentStatus === 'Enrolled'
     ) {
       throw new Error('incorrect enrollmentEndDate Student')
