@@ -1,6 +1,6 @@
 {
-  "name": "server-stud-clubs",
-  "version": "0.4.0",
+  "name": "server",
+  "version": "0.5.0",
   "description": "",
   "main": "./src/main/index.ts",
   "scripts": {
