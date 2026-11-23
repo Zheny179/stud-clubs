@@ -1,0 +1,27 @@
+# Зависимости и сборка
+node_modules
+dist
+dist-ssr
+*.local
+
+# Переменные окружения (кроме шаблона)
+.env
+.env.*
+!.env.example
+
+# Кэш сборки TypeScript и Vite (судя по вашему tsconfig)
+*.tsbuildinfo
+.vite
+
+# Логи пакетных менеджеров
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Системные файлы и настройки редакторов
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json

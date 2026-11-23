@@ -1,0 +1,33 @@
+:root {
+  /*
+  отвечают на вопрос «что этот цвет/токен означает в интерфейсе?»
+  --{Категория}-{что красим}-{роль}-{состояние}
+  */
+
+  --color-bg-page: var(--violet-1000);
+  --color-bg-elevated: var(--violet-900);
+  --color-text-primary: var(--neutral-50);
+  --color-text-secondary: var(--violet-300);
+  --color-text-muted: var(--neutral-400);
+  --color-text-title: var(--neutral-0);
+  --color-text-inverse: var(--neutral-850);
+  --color-text-on-action: var(--neutral-50);
+  --color-text-danger: var(--red-light);
+  --color-text-success: var(--green);
+  --color-accent-primary: var(--purple-300);
+  --color-accent-secondary: var(--blue-300);
+  --color-action-primary: var(--purple-500);
+  --color-action-primary-hover: var(--purple-600);
+  --color-action-icon-filled: var(--violet-500);
+  --color-action-soft: var(--violet-800);
+  --color-action-primary-active: var(--violet-800);
+  --color-success: var(--green);
+  --color-danger: var(--red);
+  --color-warning: var(--yellow);
+  --color-info: var(--sky);
+  --color-border-default: var(--violet-600);
+  --color-border-strong: var(--violet-500);
+  --border-base: var(--border-width-thin) solid var(--color-border-default);
+  --transition-base: var(--duration-fast) ease-out;
+  --transition-slow: var(--duration-slow) ease-out;
+}

@@ -1,4 +1,5 @@
 import react, { reactCompilerPreset } from '@vitejs/plugin-react'
+import svgr from 'vite-plugin-svgr'
 import babel from '@rolldown/plugin-babel'
 import { defineConfig } from 'vite'
 import path from 'path'
@@ -13,7 +14,11 @@ export default defineConfig({
       '@components': path.resolve(dirname, './src/components'),
     },
   },
+
   css: {
+    modules: {
+      generateScopedName: '[name]__[local]__[hash:base64:4]',
+    },
     preprocessorOptions: {
       scss: {
         additionalData: `@use "${path
@@ -22,5 +27,5 @@ export default defineConfig({
       },
     },
   },
-  plugins: [react(), babel({ presets: [reactCompilerPreset()] })],
+  plugins: [react(), babel({ presets: [reactCompilerPreset()] }), svgr()],
 })

@@ -1,0 +1,192 @@
+.header {
+  position: sticky;
+  top: 0;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  column-gap: var(--space-3);
+  align-items: center;
+  width: 100%;
+  padding: var(--header-padding-y) var(--space-3);
+  background-color: var(--color-bg-page);
+  border-bottom: var(--border-base);
+  border-bottom-color: transparent;
+  animation-name: scrolling-header;
+  animation-fill-mode: both;
+  animation-range: 0 50dvh;
+  animation-timeline: scroll();
+
+  @keyframes scrolling-header {
+    to {
+      padding-block: var(--header-padding-y-scrolled);
+      border-bottom-color: var(--color-border-default);
+    }
+  }
+
+  &__left {
+    display: flex;
+    grid-column: 1;
+    column-gap: var(--space-3);
+    align-items: center;
+  }
+
+  &__search {
+    @include square(100%);
+
+    display: flex;
+    grid-column: 2;
+    column-gap: var(--space-3);
+    align-items: center;
+    min-width: 50px;
+    padding: var(--space-2);
+    background-color: var(--color-bg-elevated);
+    border: var(--border-base);
+    border-radius: var(--border-radius-md);
+
+    &:focus-within {
+      outline: 2px dashed var(--color-accent-primary);
+      outline-offset: 2px;
+      border-color: var(--color-accent-primary);
+    }
+
+    &-input {
+      flex: 1;
+      min-width: 0;
+      padding: 0;
+      margin: 0;
+      color: currentcolor;
+      outline: none;
+      background-color: transparent;
+      border: none;
+
+      &::placeholder {
+        color: color-mix(in srgb, currentcolor 55%, transparent);
+      }
+
+      &::-webkit-search-cancel-button {
+        appearance: none;
+      }
+
+      &:focus-visible {
+        outline: 2px solid transparent;
+        outline-offset: 0;
+      }
+    }
+  }
+
+  &__actions {
+    display: flex;
+    grid-column: 3;
+    column-gap: var(--space-3);
+    align-items: center;
+
+    &-login {
+      @include hover {
+        color: var(--color-text-primary);
+        background-color: var(--color-action-primary-hover);
+      }
+
+      &:active {
+        background-color: var(--color-action-primary-active);
+      }
+    }
+  }
+}
+
+.overlay-menu {
+  @include hide;
+
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  max-width: 100%;
+  height: 100dvh;
+  max-height: 100dvh;
+  padding: 0;
+  margin: 0;
+  overflow-y: auto;
+  color: var(--color-text-primary);
+  pointer-events: none;
+  background-color: var(--color-bg-elevated);
+  border: none;
+  translate: -100% 0;
+  transition:
+    translate var(--duration-medium) ease,
+    opacity var(--duration-slower) ease,
+    background-color var(--duration-fast) ease-in-out,
+    visibility var(--duration-slower);
+
+  &::backdrop {
+    background-color: transparent;
+  }
+
+  &:not([open]) {
+    display: none;
+  }
+
+  &.is-open {
+    @include show;
+
+    translate: 0 0;
+
+    .overlay-menu__nav li {
+      opacity: 1;
+      translate: 0 0;
+
+      @for $i from 1 through 6 {
+        &:nth-child(#{$i}) {
+          transition-delay: #{0.15s + ($i * 0.05s)};
+        }
+      }
+    }
+
+    .overlay-menu__top {
+      background-color: var(--color-bg-page);
+
+      &::before {
+        translate: 0 0;
+      }
+    }
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100%;
+  }
+
+  &__top {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--overlay-padding);
+    padding-bottom: 15px;
+    transition: background-color 1s ease-in-out 0.2s;
+
+    &::before {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      content: '';
+      background-color: var(--color-border-default);
+      translate: -100% 0;
+      transition: translate 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+    }
+  }
+
+  &__nav {
+    padding: var(--overlay-padding);
+    margin-block: auto;
+
+    li {
+      opacity: 0;
+      translate: 0 20px;
+      transition:
+        translate 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.4s ease;
+    }
+  }
+}

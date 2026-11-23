@@ -1,0 +1,22 @@
+.nav {
+  &__list {
+    display: flex;
+    gap: var(--nav-gap);
+    align-items: center;
+
+    @include mobile {
+      flex-direction: column;
+    }
+  }
+
+  &__link {
+    @include mobile {
+      font-size: 30px;
+      font-weight: 600;
+    }
+
+    &--is-active {
+      color: var(--color-accent-secondary);
+    }
+  }
+}
