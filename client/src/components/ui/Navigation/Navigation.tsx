@@ -6,10 +6,10 @@ import { MAIN_NAV_ITEMS, type NavItem } from '@/constants/navigation'
 export type { NavItem }
 
 interface NavigationProps {
-  className?: string
-  items?: NavItem[]
-  ariaLabel?: string
-  onLinkClick?: () => void
+  className?: string | undefined
+  items?: NavItem[] | undefined
+  ariaLabel?: string | undefined
+  onLinkClick?: () => void | undefined
 }
 
 /**

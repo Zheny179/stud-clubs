@@ -21,6 +21,7 @@ function Header() {
   const dialogRef = useRef<HTMLDialogElement>(null)
   const [isOpen, setIsOpen] = useState(false)
   const { pathname } = useLocation()
+  const openRafRef = useRef<number | null>(null)
 
   const openMenu = () => {
     const dialogElement = dialogRef.current
@@ -30,21 +31,58 @@ function Header() {
 
     dialogElement.showModal()
     document.documentElement.classList.add('is-lock')
+    dialogElement.focus()
 
-    requestAnimationFrame(() => {
+    openRafRef.current = requestAnimationFrame(() => {
       setIsOpen(true)
     })
   }
 
   const closeMenu = () => {
+    if (openRafRef.current !== null) {
+      cancelAnimationFrame(openRafRef.current)
+      openRafRef.current = null
+    }
+
     setIsOpen(false)
     document.documentElement.classList.remove('is-lock')
   }
 
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(min-width: 768px)')
+
+    const handleViewportChange = (e: MediaQueryListEvent) => {
+      if (e.matches && isOpen) {
+        closeMenu()
+        dialogRef.current?.close()
+      }
+    }
+
+    mediaQuery.addEventListener('change', handleViewportChange)
+    return () => mediaQuery.removeEventListener('change', handleViewportChange)
+  }, [isOpen])
+
+  useEffect(() => {
+    if (isOpen) {
+      return
+    }
+
+    const el = dialogRef.current
+
+    if (!el?.open) {
+      return
+    }
+
+    const id = window.setTimeout(() => el.close(), 600) // чуть больше, чем duration
+    return () => {
+      window.clearTimeout(id)
+    }
+  }, [isOpen])
+
   const handleTransitionEnd = (e: TransitionEvent<HTMLDialogElement>) => {
     if (
       e.target === dialogRef.current &&
-      e.propertyName === 'clip-path' &&
+      e.propertyName === 'translate' &&
       !isOpen
     ) {
       dialogRef.current?.close()
@@ -62,6 +100,10 @@ function Header() {
 
   useEffect(() => {
     return () => {
+      if (openRafRef.current !== null) {
+        cancelAnimationFrame(openRafRef.current)
+      }
+
       document.documentElement.classList.remove('is-lock')
     }
   }, [])
@@ -89,7 +131,6 @@ function Header() {
           placeholder="Поиск по клубам и событиям…"
         />
       </form>
-
       <div className={styles.header__actions}>
         <Button
           mode="icon"
