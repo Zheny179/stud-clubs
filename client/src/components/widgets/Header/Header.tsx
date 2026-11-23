@@ -1,5 +1,6 @@
 import styles from './Header.module.scss'
 import { Button } from '@/components/ui/Button'
+import { Icon } from '@/components/ui/Icon'
 import { Logo } from '@/components/ui/Logo'
 import { Navigation } from '@/components/ui/Navigation'
 import { MOBILE_NAV_ITEMS } from '@/constants/navigation'
@@ -15,13 +16,31 @@ import {
 import { useLocation } from 'react-router'
 
 /**
- * Шапка сайта: логотип, навигация, поиск, переключатель темы
+ * Шапка сайта с логотипом, навигацией, поиском, переключателем темы и адаптивным мобильным меню.
  */
 function Header() {
   const dialogRef = useRef<HTMLDialogElement>(null)
   const [isOpen, setIsOpen] = useState(false)
   const { pathname } = useLocation()
   const openRafRef = useRef<number | null>(null)
+  const [prevPathname, setPrevPathname] = useState(pathname)
+
+  if (pathname !== prevPathname) {
+    setPrevPathname(pathname)
+    if (isOpen) {
+      setIsOpen(false)
+    }
+  }
+
+  useEffect(() => {
+    if (!isOpen) {
+      if (openRafRef.current !== null) {
+        cancelAnimationFrame(openRafRef.current)
+        openRafRef.current = null
+      }
+      document.documentElement.classList.remove('is-lock')
+    }
+  }, [isOpen])
 
   const openMenu = () => {
     const dialogElement = dialogRef.current
@@ -95,10 +114,6 @@ function Header() {
   }
 
   useEffect(() => {
-    closeMenu()
-  }, [pathname])
-
-  useEffect(() => {
     return () => {
       if (openRafRef.current !== null) {
         cancelAnimationFrame(openRafRef.current)
@@ -118,11 +133,9 @@ function Header() {
         role="search"
         className={styles.header__search}
       >
-        <Search
-          className={styles['header__search-icon']}
-          size={18}
-          aria-hidden="true"
-        />
+        <Icon>
+          <Search />
+        </Icon>
         <input
           className={styles['header__search-input']}
           type="search"
@@ -134,7 +147,7 @@ function Header() {
       <div className={styles.header__actions}>
         <Button
           mode="icon"
-          icon={<Sun size={24} />}
+          icon={<Sun />}
           label="Переключить тему"
           isLabelHidden
         />
@@ -148,7 +161,7 @@ function Header() {
         <Button
           mode="burger-menu"
           className="visible-mobile"
-          icon={<Menu size={24} />}
+          icon={<Menu />}
           label="Открыть меню"
           aria-controls="overlay-menu"
           aria-haspopup="dialog"
@@ -174,7 +187,7 @@ function Header() {
             <Button
               mode="burger-menu"
               type="button"
-              icon={<X size={24} />}
+              icon={<X />}
               label="Закрыть меню"
               isLabelHidden
               onClick={closeMenu}
