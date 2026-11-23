@@ -1,21 +1,22 @@
 import styles from './Button.module.scss'
 import clsx from 'clsx'
-import type { MouseEvent, ReactNode } from 'react'
+import type { MouseEvent, ReactElement, SVGProps } from 'react'
 import { Link } from 'react-router'
+import { Icon } from '../Icon'
 
 interface ButtonProps {
-  className?: string
-  type?: 'button' | 'submit' | 'reset'
-  href?: string
-  label?: string
-  isDisabled?: boolean
-  mode?: '' | 'icon' | 'icon-filled' | 'primary' | 'burger-menu'
-  icon?: ReactNode
-  iconPosition?: 'before' | 'after'
-  target?: string
-  isLabelHidden?: boolean
-  onClick?: (event: MouseEvent<HTMLElement>) => void
-  to?: string
+  className?: string | undefined
+  type?: 'button' | 'submit' | 'reset' | undefined
+  href?: string | undefined
+  label?: string | undefined
+  isDisabled?: boolean | undefined
+  mode?: '' | 'icon' | 'icon-filled' | 'primary' | 'burger-menu' | undefined
+  icon?: ReactElement<SVGProps<SVGSVGElement>> | undefined
+  iconPosition?: 'before' | 'after' | undefined
+  target?: string | undefined
+  isLabelHidden?: boolean | undefined
+  onClick?: (event: MouseEvent<HTMLElement>) => void | undefined
+  to?: string | undefined
 }
 
 /**
@@ -77,27 +78,17 @@ function Button(props: ButtonProps) {
     onClick: handleClick,
   }
 
+  const iconElement = icon && (
+    <Icon className={styles.button__icon}>{icon}</Icon>
+  )
+
   const content = (
     <>
-      {iconPosition === 'before' && icon && (
-        <span
-          className={styles.button__icon}
-          aria-hidden="true"
-        >
-          {icon}
-        </span>
-      )}
+      {iconPosition === 'before' && iconElement}
       {!isLabelHidden && label && (
         <span className={styles.button__label}>{label}</span>
       )}
-      {iconPosition === 'after' && icon && (
-        <span
-          className={styles.button__icon}
-          aria-hidden="true"
-        >
-          {icon}
-        </span>
-      )}
+      {iconPosition === 'after' && iconElement}
     </>
   )
 

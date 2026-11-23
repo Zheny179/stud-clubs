@@ -4,22 +4,40 @@
   background-color: transparent;
   border: none;
 
-  &__icon {
-    display: flex;
+  &--primary,
+  &--burger-menu {
+    color: var(--color-text-primary);
+    background-color: var(--color-action-primary);
+  }
+
+  &--burger-menu,
+  &--icon {
+    padding: var(--space-2);
+    border-radius: 50%;
+
+    .button__icon {
+      @include fluid-text(36, 20);
+
+      @include mobile {
+        @include fluid-text(48, 30);
+      }
+    }
+  }
+
+  &--icon,
+  &--icon-filled {
+    @include flex-center(true);
+
+    border: var(--border-base);
   }
 
   &--primary {
     padding: var(--space-2) var(--button-padding-x);
-    color: var(--color-text-primary);
-    background-color: var(--color-action-primary);
     border-radius: var(--border-radius-lg);
   }
 
   &--burger-menu {
-    padding: var(--space-2);
-    color: var(--color-text-primary);
-    background-color: var(--color-action-primary);
-    border-radius: 50%;
+    @include flex-center(true);
 
     @include hover {
       background-color: var(--color-action-primary-hover);
@@ -30,16 +48,8 @@
     }
   }
 
-  &--icon,
-  &--icon-filled {
-    display: inline-flex;
-    border: var(--border-base);
-  }
-
   &--icon {
-    padding: var(--space-2);
     color: var(--color-text-secondary);
-    border-radius: 50%;
   }
 
   &--icon-filled {
