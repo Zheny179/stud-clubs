@@ -1,0 +1,100 @@
+.footer {
+  background-color: var(--color-bg-elevated);
+  padding-block: var(--footer-padding-y);
+  display: flex;
+  flex-direction: column;
+
+  &__main {
+    display: grid;
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(var(--footer-column-min-width), 1fr)
+    );
+    gap: var(--footer-main-row-gap) var(--footer-main-column-gap);
+    padding-bottom: var(--footer-section-padding-y);
+    align-items: start;
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: var(--border-width-thin);
+      bottom: 0;
+      left: 0;
+      background-color: var(--color-border-default);
+      filter: blur(var(--footer-divider-blur));
+    }
+  }
+
+  &__brand {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: var(--footer-brand-max-width);
+    row-gap: var(--footer-stack-gap);
+  }
+
+  &__desc {
+    color: var(--color-text-secondary);
+  }
+
+  &__nav {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--footer-nav-row-gap) var(--footer-nav-column-gap);
+    align-items: start;
+
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__column {
+    display: grid;
+    row-gap: var(--footer-stack-gap);
+  }
+
+  &__title {
+    color: var(--color-accent-primary);
+    font-size: var(--footer-title-font-size);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--footer-list-gap);
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  &__link {
+    font-size: var(--footer-link-font-size);
+    opacity: var(--footer-link-opacity);
+    color: var(--color-text-secondary);
+  }
+
+  &__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--footer-bottom-gap);
+    padding-top: var(--footer-section-padding-y);
+  }
+
+  &__copyright,
+  &__version {
+    font-size: var(--footer-meta-font-size);
+    color: var(--color-text-secondary);
+  }
+}
