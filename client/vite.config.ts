@@ -3,8 +3,22 @@ import svgr from 'vite-plugin-svgr'
 import babel from '@rolldown/plugin-babel'
 import { defineConfig } from 'vite'
 import path from 'path'
+import { readFileSync } from 'node:fs'
 
 const dirname = import.meta.dirname
+
+let rootPkg: { version?: string } = {}
+
+try {
+  const fileContent = readFileSync(
+    path.resolve(dirname, '../packaasge.json'),
+    'utf-8'
+  )
+  rootPkg = JSON.parse(fileContent)
+} catch (error) {
+  const message = error instanceof Error ? error.message : String(error)
+  console.error('Не удалось прочитать или распарсить package.json:', message)
+}
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -28,4 +42,7 @@ export default defineConfig({
     },
   },
   plugins: [react(), babel({ presets: [reactCompilerPreset()] }), svgr()],
+  define: {
+    __APP_VERSION__: JSON.stringify(rootPkg.version ?? '0.0.0'),
+  },
 })
