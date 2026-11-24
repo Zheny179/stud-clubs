@@ -70,8 +70,14 @@
   --border-style-dotted: dotted;
   --border-style-none: none;
   --font-family-base: 'GolosText', system-ui;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
   --duration-fast: 0.2s;
   --duration-slow: 0.3s;
   --duration-medium: 0.4s;
   --duration-slower: 0.5s;
+  --z-100: 100;
 }
