@@ -11,7 +11,7 @@ let rootPkg: { version?: string } = {}
 
 try {
   const fileContent = readFileSync(
-    path.resolve(dirname, '../packaasge.json'),
+    path.resolve(dirname, '../package.json'),
     'utf-8'
   )
   rootPkg = JSON.parse(fileContent)
@@ -41,8 +41,21 @@ export default defineConfig({
       },
     },
   },
-  plugins: [react(), babel({ presets: [reactCompilerPreset()] }), svgr()],
+  plugins: [
+    react(),
+    babel({ presets: [reactCompilerPreset()] }),
+    svgr({
+      include: '**/*.svg?react',
+    }),
+  ],
   define: {
     __APP_VERSION__: JSON.stringify(rootPkg.version ?? '0.0.0'),
+  },
+  build: {
+    rolldownOptions: {
+      checks: {
+        bundlerTimings: false,
+      },
+    },
   },
 })
