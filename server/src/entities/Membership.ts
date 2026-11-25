@@ -82,16 +82,16 @@ export class Membership extends Entity<MembershipProps> {
   }
 
   // === Геттеры ===
-  get version(): number { return this.props.version }
-  get studentId(): string { return this.props.studentId }
-  get clubId(): string { return this.props.clubId }
-  get clubRole(): ClubRole { return this.props.clubRole }
-  get status(): MembershipStatus { return this.props.status }
-  get source(): MembershipSource { return this.props.source }
-  get applicationId(): string | undefined { return this.props.applicationId }
-  get joinedAt(): Date { return this.props.joinedAt }
-  get leftAt(): Date | undefined { return this.props.leftAt }
-  get leaveReason(): string | undefined { return this.props.leaveReason }
+  private get version(): number { return this.props.version }
+  private get studentId(): string { return this.props.studentId }
+  private get clubId(): string { return this.props.clubId }
+  private get clubRole(): ClubRole { return this.props.clubRole }
+  private get status(): MembershipStatus { return this.props.status }
+  private get source(): MembershipSource { return this.props.source }
+  private get applicationId(): string | undefined { return this.props.applicationId }
+  private get joinedAt(): Date { return this.props.joinedAt }
+  private get leftAt(): Date | undefined { return this.props.leftAt }
+  private get leaveReason(): string | undefined { return this.props.leaveReason }
 
   // === checkFunctions ===
   private checkEnums = (): void => {

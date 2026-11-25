@@ -99,19 +99,19 @@ export class JoinApplication extends Entity<JoinApplicationProps> {
   }
 
   // === Геттеры ===
-  get version(): number { return this.props.version }
-  get studentId(): string { return this.props.studentId }
-  get clubId(): string { return this.props.clubId }
-  get motivationText(): string { return this.props.motivationText }
-  get preferredSlotId(): string | undefined { return this.props.preferredSlotId }
-  get invitedSlotId(): string | undefined { return this.props.invitedSlotId }
-  get status(): ApplicationStatus { return this.props.status }
-  get consentGiven(): boolean { return this.props.consentGiven }
-  get consentVersion(): string { return this.props.consentVersion }
-  get submittedAt(): Date | undefined { return this.props.submittedAt }
-  get decidedAt(): Date | undefined { return this.props.decidedAt }
-  get decidedBy(): string | undefined { return this.props.decidedBy }
-  get rejectionReason(): string | undefined { return this.props.rejectionReason }
+  private get version(): number { return this.props.version }
+  private get studentId(): string { return this.props.studentId }
+  private get clubId(): string { return this.props.clubId }
+  private get motivationText(): string { return this.props.motivationText }
+  private get preferredSlotId(): string | undefined { return this.props.preferredSlotId }
+  private get invitedSlotId(): string | undefined { return this.props.invitedSlotId }
+  private get status(): ApplicationStatus { return this.props.status }
+  private get consentGiven(): boolean { return this.props.consentGiven }
+  private get consentVersion(): string { return this.props.consentVersion }
+  private get submittedAt(): Date | undefined { return this.props.submittedAt }
+  private get decidedAt(): Date | undefined { return this.props.decidedAt }
+  private get decidedBy(): string | undefined { return this.props.decidedBy }
+  private get rejectionReason(): string | undefined { return this.props.rejectionReason }
 
   // === checkFunctions ===
   private checkMotivationText = (): void => {

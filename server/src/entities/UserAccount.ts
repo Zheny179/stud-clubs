@@ -83,17 +83,17 @@ export class UserAccount extends Entity<UserAccountProps> {
   }
 
   // === Геттеры ===
-  get version(): number { return this.props.version }
-  get login(): string { return this.props.login }
-  get ownerType(): AccountOwnerType { return this.props.ownerType }
-  get ownerId(): string { return this.props.ownerId }
-  get status(): AccountStatus { return this.props.status }
-  get blockReason(): string | undefined { return this.props.blockReason }
-  get blockedAt(): Date | undefined { return this.props.blockedAt }
-  get failedAttempts(): number { return this.props.failedAttempts }
-  get sessionVersion(): number { return this.props.sessionVersion }
+  private get version(): number { return this.props.version }
+  private get login(): string { return this.props.login }
+  private get ownerType(): AccountOwnerType { return this.props.ownerType }
+  private get ownerId(): string { return this.props.ownerId }
+  private get status(): AccountStatus { return this.props.status }
+  private get blockReason(): string | undefined { return this.props.blockReason }
+  private get blockedAt(): Date | undefined { return this.props.blockedAt }
+  private get failedAttempts(): number { return this.props.failedAttempts }
+  private get sessionVersion(): number { return this.props.sessionVersion }
 
-  /** @description Только для сохранения */
+  /** Только для сохранения */
   get passwordHash(): string { return this.props.passwordHash }
 
   // === checkFunctions ===

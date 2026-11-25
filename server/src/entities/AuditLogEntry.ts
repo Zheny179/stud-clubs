@@ -76,14 +76,14 @@ export class AuditLogEntry extends Entity<AuditLogEntryProps> {
   }
 
   // === Геттеры ===
-  get occurredAt(): Date { return this.props.occurredAt }
-  get subjectType(): SubjectType { return this.props.subjectType }
-  get subjectId(): string | undefined { return this.props.subjectId }
-  get action(): AuditAction { return this.props.action }
-  get objectType(): string { return this.props.objectType }
-  get objectId(): string { return this.props.objectId }
-  get clubId(): string | undefined { return this.props.clubId }
-  get changes(): string | undefined { return this.props.changes }
+  private get occurredAt(): Date { return this.props.occurredAt }
+  private get subjectType(): SubjectType { return this.props.subjectType }
+  private get subjectId(): string | undefined { return this.props.subjectId }
+  private get action(): AuditAction { return this.props.action }
+  private get objectType(): string { return this.props.objectType }
+  private get objectId(): string { return this.props.objectId }
+  private get clubId(): string | undefined { return this.props.clubId }
+  private get changes(): string | undefined { return this.props.changes }
 
   // === checkFunctions ===
   private checkOccurredAt = (): void => {

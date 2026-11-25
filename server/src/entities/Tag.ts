@@ -47,9 +47,9 @@ export class Tag extends Entity<TagProps> {
   }
 
   // === Геттеры ===
-  get version(): number { return this.props.version }
-  get name(): string { return this.props.name }
-  get slug(): string { return this.props.slug }
+  private get version(): number { return this.props.version }
+  private get name(): string { return this.props.name }
+  private get slug(): string { return this.props.slug }
 
   // === checkFunctions ===
   // уникальность name и slug проверяет сценарий через репозиторий

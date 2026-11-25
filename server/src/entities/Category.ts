@@ -68,14 +68,14 @@ export class Category extends Entity<CategoryProps> {
   }
 
   // === Геттеры ===
-  get version(): number { return this.props.version }
-  get name(): string { return this.props.name }
-  get slug(): string { return this.props.slug }
-  get description(): string | undefined { return this.props.description }
-  get colorLight(): string { return this.props.colorLight }
-  get colorDark(): string { return this.props.colorDark }
-  get sortOrder(): number { return this.props.sortOrder }
-  get isArchived(): boolean { return this.props.isArchived }
+  private get version(): number { return this.props.version }
+  private get name(): string { return this.props.name }
+  private get slug(): string { return this.props.slug }
+  private get description(): string | undefined { return this.props.description }
+  private get colorLight(): string { return this.props.colorLight }
+  private get colorDark(): string { return this.props.colorDark }
+  private get sortOrder(): number { return this.props.sortOrder }
+  private get isArchived(): boolean { return this.props.isArchived }
 
   // === checkFunctions ===
   private checkName = (): void => {

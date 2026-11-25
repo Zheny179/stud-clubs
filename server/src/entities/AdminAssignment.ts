@@ -57,13 +57,15 @@ export class AdminAssignment extends Entity<AdminAssignmentProps> {
   }
 
   // === Геттеры ===
-  get version(): number { return this.props.version }
-  get employeeId(): string { return this.props.employeeId }
-  get appointedAt(): Date { return this.props.appointedAt }
-  get revokedAt(): Date | undefined { return this.props.revokedAt }
-  get revokeReason(): string | undefined { return this.props.revokeReason }
+  private get version(): number { return this.props.version }
+  private get employeeId(): string { return this.props.employeeId }
 
-  /** @description Признак действующего назначения */
+  private get appointedAt(): Date { return this.props.appointedAt }
+  private get revokedAt(): Date | undefined { return this.props.revokedAt }
+
+  private get revokeReason(): string | undefined { return this.props.revokeReason }
+
+  /** Признак действующего назначения */
   get isActive(): boolean { return this.props.revokedAt === undefined }
 
   // === checkFunctions ===

@@ -70,15 +70,14 @@ export class ClubEvent extends Entity<ClubEventProps> {
   }
 
   // === Геттеры ===
-  get id(): string { return this.props.id }
-  get version(): number { return this.props.version }
-  get clubId(): string { return this.props.clubId }
-  get name(): string { return this.props.name }
-  get description(): string | undefined { return this.props.description }
-  get place(): string { return this.props.place }
-  get startsAt(): Date { return this.props.startsAt }
-  get capacity(): number | null { return this.props.capacity }
-  get status(): EventStatus { return this.props.status }
+  private get version(): number { return this.props.version }
+  private get clubId(): string { return this.props.clubId }
+  private get name(): string { return this.props.name }
+  private get description(): string | undefined { return this.props.description }
+  private get place(): string { return this.props.place }
+  private get startsAt(): Date { return this.props.startsAt }
+  private get capacity(): number | null { return this.props.capacity }
+  private get status(): EventStatus { return this.props.status }
 
   // === checkFunctions ===
   private checkName = (): void => {
