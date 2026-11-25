@@ -11,53 +11,53 @@ type ApplicationStatus =
   | 'Expired'
 
 interface JoinApplicationProps {
-  id: string,
-  version: number,
+  id: string
+  version: number
 
-  studentId: string,
-  clubId: string,
+  studentId: string
+  clubId: string
 
   /** @description Мотивационное письмо */
-  motivationText: string,
+  motivationText: string
   /** @description Предпочтительный слот расписания */
-  preferredSlotId?: string,
+  preferredSlotId?: string
   /** @description Слот, на который пригласили заявителя */
-  invitedSlotId?: string,
+  invitedSlotId?: string
 
-  status: ApplicationStatus,
+  status: ApplicationStatus
 
   /** @description Отметка о согласии на обработку персональных данных */
-  consentGiven: boolean,
+  consentGiven: boolean
   /** @description Версия текста согласия */
-  consentVersion: string,
+  consentVersion: string
 
   /** @description Дата подачи */
-  submittedAt?: Date,
+  submittedAt?: Date
   /** @description Дата решения */
-  decidedAt?: Date,
+  decidedAt?: Date
   /** @description Инициатор решения */
-  decidedBy?: string,
+  decidedBy?: string
   /** @description Причина отказа, не короче */
-  rejectionReason?: string,
+  rejectionReason?: string
 }
 
 interface CreateJoinApplicationProps {
-  studentId: string,
-  clubId: string,
+  studentId: string
+  clubId: string
 
-  motivationText: string,
-  preferredSlotId?: string,
-  invitedSlotId?: string,
+  motivationText: string
+  preferredSlotId?: string
+  invitedSlotId?: string
 
-  status: ApplicationStatus,
+  status: ApplicationStatus
 
-  consentGiven: boolean,
-  consentVersion: string,
+  consentGiven: boolean
+  consentVersion: string
 
-  submittedAt?: Date,
-  decidedAt?: Date,
-  decidedBy?: string,
-  rejectionReason?: string,
+  submittedAt?: Date
+  decidedAt?: Date
+  decidedBy?: string
+  rejectionReason?: string
 }
 
 /** @description Entity */
@@ -81,7 +81,7 @@ export class JoinApplication extends Entity<JoinApplicationProps> {
    * @param props заглушка
    */
   public static createJoinApplicationEntity(
-    props: CreateJoinApplicationProps,
+    props: CreateJoinApplicationProps
   ): JoinApplication {
     return new JoinApplication({
       ...props,
@@ -99,26 +99,54 @@ export class JoinApplication extends Entity<JoinApplicationProps> {
   }
 
   // === Геттеры ===
-  private get version(): number { return this.props.version }
-  private get studentId(): string { return this.props.studentId }
-  private get clubId(): string { return this.props.clubId }
-  private get motivationText(): string { return this.props.motivationText }
-  private get preferredSlotId(): string | undefined { return this.props.preferredSlotId }
-  private get invitedSlotId(): string | undefined { return this.props.invitedSlotId }
-  private get status(): ApplicationStatus { return this.props.status }
-  private get consentGiven(): boolean { return this.props.consentGiven }
-  private get consentVersion(): string { return this.props.consentVersion }
-  private get submittedAt(): Date | undefined { return this.props.submittedAt }
-  private get decidedAt(): Date | undefined { return this.props.decidedAt }
-  private get decidedBy(): string | undefined { return this.props.decidedBy }
-  private get rejectionReason(): string | undefined { return this.props.rejectionReason }
+  private get version(): number {
+    return this.props.version
+  }
+  private get studentId(): string {
+    return this.props.studentId
+  }
+  private get clubId(): string {
+    return this.props.clubId
+  }
+  private get motivationText(): string {
+    return this.props.motivationText
+  }
+  private get preferredSlotId(): string | undefined {
+    return this.props.preferredSlotId
+  }
+  private get invitedSlotId(): string | undefined {
+    return this.props.invitedSlotId
+  }
+  private get status(): ApplicationStatus {
+    return this.props.status
+  }
+  private get consentGiven(): boolean {
+    return this.props.consentGiven
+  }
+  private get consentVersion(): string {
+    return this.props.consentVersion
+  }
+  private get submittedAt(): Date | undefined {
+    return this.props.submittedAt
+  }
+  private get decidedAt(): Date | undefined {
+    return this.props.decidedAt
+  }
+  private get decidedBy(): string | undefined {
+    return this.props.decidedBy
+  }
+  private get rejectionReason(): string | undefined {
+    return this.props.rejectionReason
+  }
 
   // === checkFunctions ===
   private checkMotivationText = (): void => {
-    if (!(
-      this.motivationText.trim().length >= 50 &&
-      this.motivationText.trim().length <= 1000
-    )) {
+    if (
+      !(
+        this.motivationText.trim().length >= 50 &&
+        this.motivationText.trim().length <= 1000
+      )
+    ) {
       throw new Error('incorrect motivationText JoinApplication')
     }
   }
@@ -135,7 +163,13 @@ export class JoinApplication extends Entity<JoinApplicationProps> {
 
   private checkStatus = (): void => {
     const statuses: ApplicationStatus[] = [
-      'Draft', 'Pending', 'Invited', 'Approved', 'Rejected', 'Withdrawn', 'Expired',
+      'Draft',
+      'Pending',
+      'Invited',
+      'Approved',
+      'Rejected',
+      'Withdrawn',
+      'Expired',
     ]
 
     if (!statuses.includes(this.status)) {
@@ -144,7 +178,9 @@ export class JoinApplication extends Entity<JoinApplicationProps> {
   }
 
   private checkSubmittedAt = (): void => {
-    if (this.submittedAt === undefined && this.status === 'Draft') { return }
+    if (this.submittedAt === undefined && this.status === 'Draft') {
+      return
+    }
 
     if (this.submittedAt === undefined) {
       throw new Error('incorrect submittedAt JoinApplication')
@@ -162,7 +198,9 @@ export class JoinApplication extends Entity<JoinApplicationProps> {
       this.status === 'Withdrawn' ||
       this.status === 'Expired'
 
-    if (this.decidedAt === undefined && !isDecided) { return }
+    if (this.decidedAt === undefined && !isDecided) {
+      return
+    }
 
     if (this.decidedAt === undefined) {
       throw new Error('incorrect decidedAt JoinApplication')
@@ -178,7 +216,9 @@ export class JoinApplication extends Entity<JoinApplicationProps> {
   }
 
   private checkRejectionReason = (): void => {
-    if (this.rejectionReason === undefined && this.status !== 'Rejected') { return }
+    if (this.rejectionReason === undefined && this.status !== 'Rejected') {
+      return
+    }
 
     if (this.rejectionReason === undefined) {
       throw new Error('incorrect rejectionReason JoinApplication')

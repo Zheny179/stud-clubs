@@ -2,25 +2,25 @@ import { Entity } from './shared/Entity.js'
 import { randomUUID } from 'node:crypto'
 
 interface AdminAssignmentProps {
-  id: string,
-  version: number,
+  id: string
+  version: number
 
-  employeeId: string,
+  employeeId: string
 
   /** @description Дата назначения */
-  appointedAt: Date,
+  appointedAt: Date
   /** @description Дата прекращения полномочий */
-  revokedAt?: Date,
+  revokedAt?: Date
   /** @description Основание прекращения */
-  revokeReason?: string,
+  revokeReason?: string
 }
 
 interface CreateAdminAssignmentProps {
-  employeeId: string,
+  employeeId: string
 
-  appointedAt: Date,
-  revokedAt?: Date,
-  revokeReason?: string,
+  appointedAt: Date
+  revokedAt?: Date
+  revokeReason?: string
 }
 
 /** @description Entity */
@@ -39,7 +39,7 @@ export class AdminAssignment extends Entity<AdminAssignmentProps> {
    * @param props заглушка
    */
   public static createAdminAssignmentEntity(
-    props: CreateAdminAssignmentProps,
+    props: CreateAdminAssignmentProps
   ): AdminAssignment {
     return new AdminAssignment({
       ...props,
@@ -57,16 +57,28 @@ export class AdminAssignment extends Entity<AdminAssignmentProps> {
   }
 
   // === Геттеры ===
-  private get version(): number { return this.props.version }
-  private get employeeId(): string { return this.props.employeeId }
+  private get version(): number {
+    return this.props.version
+  }
+  private get employeeId(): string {
+    return this.props.employeeId
+  }
 
-  private get appointedAt(): Date { return this.props.appointedAt }
-  private get revokedAt(): Date | undefined { return this.props.revokedAt }
+  private get appointedAt(): Date {
+    return this.props.appointedAt
+  }
+  private get revokedAt(): Date | undefined {
+    return this.props.revokedAt
+  }
 
-  private get revokeReason(): string | undefined { return this.props.revokeReason }
+  private get revokeReason(): string | undefined {
+    return this.props.revokeReason
+  }
 
   /** Признак действующего назначения */
-  get isActive(): boolean { return this.props.revokedAt === undefined }
+  get isActive(): boolean {
+    return this.props.revokedAt === undefined
+  }
 
   // === checkFunctions ===
 
@@ -77,7 +89,9 @@ export class AdminAssignment extends Entity<AdminAssignmentProps> {
   }
 
   private checkRevokedAt = (): void => {
-    if (this.revokedAt === undefined) { return }
+    if (this.revokedAt === undefined) {
+      return
+    }
 
     if (!(this.revokedAt >= this.appointedAt)) {
       throw new Error('incorrect revokedAt AdminAssignment')
@@ -85,7 +99,9 @@ export class AdminAssignment extends Entity<AdminAssignmentProps> {
   }
 
   private checkRevokeReason = (): void => {
-    if (this.revokeReason === undefined && this.revokedAt === undefined) { return }
+    if (this.revokeReason === undefined && this.revokedAt === undefined) {
+      return
+    }
 
     if (this.revokeReason === undefined) {
       throw new Error('incorrect revokeReason AdminAssignment')

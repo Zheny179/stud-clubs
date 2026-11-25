@@ -5,34 +5,34 @@ import { randomUUID } from 'node:crypto'
 type EventStatus = 'Planned' | 'Held' | 'Cancelled'
 
 interface ClubEventProps {
-  id: string,
-  version: number,
+  id: string
+  version: number
 
-  clubId: string,
+  clubId: string
 
   /** @description Наименование мероприятия */
-  name: string,
-  description?: string,
+  name: string
+  description?: string
   /** @description Место проведения */
-  place: string,
+  place: string
   /** @description Момент начала */
-  startsAt: Date,
+  startsAt: Date
   /** @description Вместимость */
-  capacity: number | null,
+  capacity: number | null
 
-  status: EventStatus,
+  status: EventStatus
 }
 
 interface CreateClubEventProps {
-  clubId: string,
+  clubId: string
 
-  name: string,
-  description?: string,
-  place: string,
-  startsAt: Date,
-  capacity: number | null,
+  name: string
+  description?: string
+  place: string
+  startsAt: Date
+  capacity: number | null
 
-  status: EventStatus,
+  status: EventStatus
 }
 
 /** @description Entity */
@@ -70,27 +70,42 @@ export class ClubEvent extends Entity<ClubEventProps> {
   }
 
   // === Геттеры ===
-  private get version(): number { return this.props.version }
-  private get clubId(): string { return this.props.clubId }
-  private get name(): string { return this.props.name }
-  private get description(): string | undefined { return this.props.description }
-  private get place(): string { return this.props.place }
-  private get startsAt(): Date { return this.props.startsAt }
-  private get capacity(): number | null { return this.props.capacity }
-  private get status(): EventStatus { return this.props.status }
+  private get version(): number {
+    return this.props.version
+  }
+  private get clubId(): string {
+    return this.props.clubId
+  }
+  private get name(): string {
+    return this.props.name
+  }
+  private get description(): string | undefined {
+    return this.props.description
+  }
+  private get place(): string {
+    return this.props.place
+  }
+  private get startsAt(): Date {
+    return this.props.startsAt
+  }
+  private get capacity(): number | null {
+    return this.props.capacity
+  }
+  private get status(): EventStatus {
+    return this.props.status
+  }
 
   // === checkFunctions ===
   private checkName = (): void => {
-    if (!(
-      this.name.trim().length >= 2 &&
-      this.name.trim().length <= 120
-    )) {
+    if (!(this.name.trim().length >= 2 && this.name.trim().length <= 120)) {
       throw new Error('incorrect name ClubEvent')
     }
   }
 
   private checkDescription = (): void => {
-    if (this.description === undefined) { return }
+    if (this.description === undefined) {
+      return
+    }
 
     if (!(this.description.trim().length <= 2000)) {
       throw new Error('incorrect description ClubEvent')
@@ -110,12 +125,11 @@ export class ClubEvent extends Entity<ClubEventProps> {
   }
 
   private checkCapacity = (): void => {
-    if (this.capacity === null) { return }
+    if (this.capacity === null) {
+      return
+    }
 
-    if (
-      !Number.isInteger(this.capacity) ||
-      !(this.capacity >= 1)
-    ) {
+    if (!Number.isInteger(this.capacity) || !(this.capacity >= 1)) {
       throw new Error('incorrect capacity ClubEvent')
     }
   }

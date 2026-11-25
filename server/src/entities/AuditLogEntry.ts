@@ -12,34 +12,34 @@ type AuditAction =
   | 'Reset'
 
 interface AuditLogEntryProps {
-  id: string,
+  id: string
 
   /** @description Момент совершения действия */
-  occurredAt: Date,
+  occurredAt: Date
   /** @description Кто совершил действие */
-  subjectType: SubjectType,
-  subjectId?: string,
+  subjectType: SubjectType
+  subjectId?: string
 
-  action: AuditAction,
+  action: AuditAction
   /** @description Тип затронутого объекта */
-  objectType: string,
-  objectId: string,
+  objectType: string
+  objectId: string
   /** @description Клуб для области видимости руководителя */
-  clubId?: string,
+  clubId?: string
   /** @description Изменённые поля: было → стало */
-  changes?: string,
+  changes?: string
 }
 
 interface CreateAuditLogEntryProps {
-  occurredAt: Date,
-  subjectType: SubjectType,
-  subjectId?: string,
+  occurredAt: Date
+  subjectType: SubjectType
+  subjectId?: string
 
-  action: AuditAction,
-  objectType: string,
-  objectId: string,
-  clubId?: string,
-  changes?: string,
+  action: AuditAction
+  objectType: string
+  objectId: string
+  clubId?: string
+  changes?: string
 }
 
 /** @description Entity */
@@ -59,7 +59,7 @@ export class AuditLogEntry extends Entity<AuditLogEntryProps> {
    * @param props заглушка
    */
   public static createAuditLogEntryEntity(
-    props: CreateAuditLogEntryProps,
+    props: CreateAuditLogEntryProps
   ): AuditLogEntry {
     return new AuditLogEntry({
       ...props,
@@ -76,14 +76,30 @@ export class AuditLogEntry extends Entity<AuditLogEntryProps> {
   }
 
   // === Геттеры ===
-  private get occurredAt(): Date { return this.props.occurredAt }
-  private get subjectType(): SubjectType { return this.props.subjectType }
-  private get subjectId(): string | undefined { return this.props.subjectId }
-  private get action(): AuditAction { return this.props.action }
-  private get objectType(): string { return this.props.objectType }
-  private get objectId(): string { return this.props.objectId }
-  private get clubId(): string | undefined { return this.props.clubId }
-  private get changes(): string | undefined { return this.props.changes }
+  private get occurredAt(): Date {
+    return this.props.occurredAt
+  }
+  private get subjectType(): SubjectType {
+    return this.props.subjectType
+  }
+  private get subjectId(): string | undefined {
+    return this.props.subjectId
+  }
+  private get action(): AuditAction {
+    return this.props.action
+  }
+  private get objectType(): string {
+    return this.props.objectType
+  }
+  private get objectId(): string {
+    return this.props.objectId
+  }
+  private get clubId(): string | undefined {
+    return this.props.clubId
+  }
+  private get changes(): string | undefined {
+    return this.props.changes
+  }
 
   // === checkFunctions ===
   private checkOccurredAt = (): void => {
@@ -95,7 +111,13 @@ export class AuditLogEntry extends Entity<AuditLogEntryProps> {
   private checkEnums = (): void => {
     const subjects: SubjectType[] = ['Student', 'Employee', 'System']
     const actions: AuditAction[] = [
-      'Create', 'Update', 'StatusChange', 'Delete', 'Import', 'Export', 'Reset',
+      'Create',
+      'Update',
+      'StatusChange',
+      'Delete',
+      'Import',
+      'Export',
+      'Reset',
     ]
 
     if (!subjects.includes(this.subjectType)) {
@@ -110,7 +132,9 @@ export class AuditLogEntry extends Entity<AuditLogEntryProps> {
   private checkSubjectId = (): void => {
     const isSystem = this.subjectType === 'System'
 
-    if (this.subjectId === undefined && isSystem) { return }
+    if (this.subjectId === undefined && isSystem) {
+      return
+    }
 
     if (this.subjectId === undefined) {
       throw new Error('incorrect subjectId AuditLogEntry')

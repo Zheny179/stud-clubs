@@ -1,88 +1,94 @@
 import { Entity } from './shared/Entity.js'
-import {randomUUID} from 'node:crypto'
+import { randomUUID } from 'node:crypto'
 
 // TODO: Пока что не реализованы типизированные ошибки, они будут потом
 // TODO: Сделать документацию JSDoc
 
 // TODO: Реализовать сущности
-interface Contact {readonly id: number}
-interface ScheduleSlot {readonly id: number}
-interface MediaSlot {readonly id: number}
+interface Contact {
+  readonly id: number
+}
+interface ScheduleSlot {
+  readonly id: number
+}
+interface MediaSlot {
+  readonly id: number
+}
 
 // TODO: Выделить эти типы в общую папочку shared, когда она появится
-type ActivityForm = 'Regular classes' | 'Project work' | 'One time events';
+type ActivityForm = 'Regular classes' | 'Project work' | 'One time events'
 type State = 'Active' | 'Recruitment close' | 'Suspended' | 'Disbanded'
 
 interface ClubProps {
   id: string
-  slug: string,
-  version: number,
+  slug: string
+  version: number
 
-  categoryId: string,
-  tagsId?: string[],
+  categoryId: string
+  tagsId?: string[]
 
-  name: string,
-  shortDescription: string,
-  fullDescription: string,
+  name: string
+  shortDescription: string
+  fullDescription: string
 
   /** @description Действующий руководитель */
-  clubHeadID: string,
+  clubHeadID: string
 
   /** @description Форма деятельности */
-  activityForms: ActivityForm[],
+  activityForms: ActivityForm[]
   /** @description место проведения */
-  place?: string,
+  place?: string
   /** @description Расписание */
-  schedule?: ScheduleSlot[],
-  state: State,
+  schedule?: ScheduleSlot[]
+  state: State
 
   /** @description Дата основания */
-  foundedAt: Date,
-  createdAt: Date,
-  lastVerified: Date,
+  foundedAt: Date
+  createdAt: Date
+  lastVerified: Date
 
   /** @description Предельная численность */
-  memberLimit: number | null,
-  minCourse?: number,
-  maxCourse?: number,
+  memberLimit: number | null
+  minCourse?: number
+  maxCourse?: number
 
   /** @description Наличие собеседования */
-  interviewRequired: boolean,
+  interviewRequired: boolean
   /** @description Требования к опыту */
-  experienceRequirement?: string,
+  experienceRequirement?: string
 
-  contacts: Contact[],
-  media?: MediaSlot[],
+  contacts: Contact[]
+  media?: MediaSlot[]
 }
 
 /** */
 interface CreateClubProps {
-  categoryId: string,
-  tagsId?: string[],
+  categoryId: string
+  tagsId?: string[]
 
-  name: string,
-  shortDescription: string,
-  fullDescription: string,
+  name: string
+  shortDescription: string
+  fullDescription: string
 
-  clubHeadID: string,
+  clubHeadID: string
 
-  activityForms: ActivityForm[],
-  place?: string,
-  schedule?: ScheduleSlot[],
-  state: State,
+  activityForms: ActivityForm[]
+  place?: string
+  schedule?: ScheduleSlot[]
+  state: State
 
-  foundedAt: Date,
+  foundedAt: Date
 
-  memberLimit: number | null,
-  minCourse?: number,
-  maxCourse?: number,
+  memberLimit: number | null
+  minCourse?: number
+  maxCourse?: number
 
-  interviewRequired: boolean,
+  interviewRequired: boolean
 
-  experienceRequirement?: string,
+  experienceRequirement?: string
 
-  contacts: Contact[],
-  media?: MediaSlot[],
+  contacts: Contact[]
+  media?: MediaSlot[]
 }
 
 /** @description Entity club */
@@ -108,7 +114,6 @@ export class Club extends Entity<ClubProps> {
 
     this.checkExperienceRequirement()
     this.checkContacts()
-
   }
   // === Фабрики ===
   /**
@@ -137,36 +142,80 @@ export class Club extends Entity<ClubProps> {
   }
   // === Геттеры и сеттеры ===
   // TODO: Сделать проверки на все свойства
-  private get slug(): string { return this.props.slug}
-  private get version(): number { return this.props.version }
+  private get slug(): string {
+    return this.props.slug
+  }
+  private get version(): number {
+    return this.props.version
+  }
 
-  private get categoryId(): string { return this.props.categoryId }
-  private get tagsId(): string[] | undefined { return this.props.tagsId }
+  private get categoryId(): string {
+    return this.props.categoryId
+  }
+  private get tagsId(): string[] | undefined {
+    return this.props.tagsId
+  }
 
-  private get name(): string { return this.props.name }
-  private get shortDescription(): string { return this.props.shortDescription }
-  private get fullDescription(): string { return this.props.fullDescription }
+  private get name(): string {
+    return this.props.name
+  }
+  private get shortDescription(): string {
+    return this.props.shortDescription
+  }
+  private get fullDescription(): string {
+    return this.props.fullDescription
+  }
 
-  private get clubHeadID(): string { return this.props.clubHeadID }
+  private get clubHeadID(): string {
+    return this.props.clubHeadID
+  }
 
-  private get activityForms(): ActivityForm[] { return this.props.activityForms }
-  private get place(): string | undefined { return  this.props.place }
-  private get schedule(): ScheduleSlot[] | undefined { return this.props.schedule }
-  private get state(): State { return this.props.state }
+  private get activityForms(): ActivityForm[] {
+    return this.props.activityForms
+  }
+  private get place(): string | undefined {
+    return this.props.place
+  }
+  private get schedule(): ScheduleSlot[] | undefined {
+    return this.props.schedule
+  }
+  private get state(): State {
+    return this.props.state
+  }
 
-  private get foundedAt(): Date { return this.props.foundedAt }
-  private get createdAt(): Date { return this.props.createdAt }
-  private get lastVerified(): Date { return this.props.lastVerified }
+  private get foundedAt(): Date {
+    return this.props.foundedAt
+  }
+  private get createdAt(): Date {
+    return this.props.createdAt
+  }
+  private get lastVerified(): Date {
+    return this.props.lastVerified
+  }
 
-  private get memberLimit(): number | null { return this.props.memberLimit }
-  private get minCourse(): number | undefined { return this.props.minCourse }
-  private get maxCourse(): number | undefined { return this.props.maxCourse }
+  private get memberLimit(): number | null {
+    return this.props.memberLimit
+  }
+  private get minCourse(): number | undefined {
+    return this.props.minCourse
+  }
+  private get maxCourse(): number | undefined {
+    return this.props.maxCourse
+  }
 
-  private get interviewRequired(): boolean { return this.props.interviewRequired }
-  private get experienceRequirement(): string | undefined { return this.props.experienceRequirement }
+  private get interviewRequired(): boolean {
+    return this.props.interviewRequired
+  }
+  private get experienceRequirement(): string | undefined {
+    return this.props.experienceRequirement
+  }
 
-  private get contacts(): Contact[] { return this.props.contacts }
-  private get media(): MediaSlot[] | undefined { return this.props.media }
+  private get contacts(): Contact[] {
+    return this.props.contacts
+  }
+  private get media(): MediaSlot[] | undefined {
+    return this.props.media
+  }
 
   // === checkFunctions ===
   private checkVersion = (): void => {
@@ -193,10 +242,9 @@ export class Club extends Entity<ClubProps> {
   }
 
   private checkFullDescription = (): void => {
-    if (!(
-      this.fullDescription.length > 0 &&
-      this.fullDescription.length <= 2500
-    )) {
+    if (
+      !(this.fullDescription.length > 0 && this.fullDescription.length <= 2500)
+    ) {
       throw new Error('incorrect fullDescription club')
     }
   }
@@ -214,10 +262,7 @@ export class Club extends Entity<ClubProps> {
       }
     }
     this.activityForms.forEach((el: ActivityForm): void => {
-      if (
-        el === 'Regular classes' &&
-        typeof this.schedule === 'undefined'
-      ) {
+      if (el === 'Regular classes' && typeof this.schedule === 'undefined') {
         throw new Error('incorrect schedule club')
       }
     })
@@ -225,38 +270,30 @@ export class Club extends Entity<ClubProps> {
 
   private checkFoundedAt = (): void => {
     const diff: number = this.createdAt.getTime() - this.foundedAt.getTime()
-    if (!(
-      diff >= 0
-    )) {
+    if (!(diff >= 0)) {
       throw new Error('incorrect createdAt or foundedAt club')
     }
   }
 
   private checkDate = (): void => {
     const diff: number = this.lastVerified.getTime() - this.createdAt.getTime()
-    if (!(
-      diff >= 0
-    )) {
+    if (!(diff >= 0)) {
       throw new Error('incorrect lastVerified or createdAt club')
     }
   }
 
   private checkMemberLimit = (): void => {
-    if (this.memberLimit === null) { return }
+    if (this.memberLimit === null) {
+      return
+    }
 
-    if (
-      !(Number.isInteger(this.memberLimit)) ||
-      !(this.memberLimit >= 5)
-    ) {
+    if (!Number.isInteger(this.memberLimit) || !(this.memberLimit >= 5)) {
       throw new Error('incorrect memberLimit club')
     }
   }
 
   private checkMinCourse = (): void => {
-    if (
-      typeof this.minCourse === 'number' &&
-      !(this.minCourse >= 1)
-    ) {
+    if (typeof this.minCourse === 'number' && !(this.minCourse >= 1)) {
       throw new Error('incorrect minCourse club')
     }
   }
@@ -265,7 +302,7 @@ export class Club extends Entity<ClubProps> {
     if (
       typeof this.minCourse === 'number' &&
       typeof this.maxCourse === 'number' &&
-      (this.minCourse > this.maxCourse)
+      this.minCourse > this.maxCourse
     ) {
       throw new Error('incorrect course requirement club')
     }

@@ -14,39 +14,39 @@ type ClubRole = 'Head' | 'Deputy' | 'Core' | 'Member' | 'Candidate'
 type MembershipSource = 'ApprovedApplication' | 'Manual'
 
 interface MembershipProps {
-  id: string,
-  version: number,
+  id: string
+  version: number
 
-  studentId: string,
-  clubId: string,
+  studentId: string
+  clubId: string
 
-  clubRole: ClubRole,
-  status: MembershipStatus,
+  clubRole: ClubRole
+  status: MembershipStatus
   /** @description Откуда появилось участие */
-  source: MembershipSource,
+  source: MembershipSource
   /** @description Заявка, одобрением которой создано участие */
-  applicationId?: string,
+  applicationId?: string
 
   /** @description Дата вступления */
-  joinedAt: Date,
+  joinedAt: Date
   /** @description Дата выбытия */
-  leftAt?: Date,
+  leftAt?: Date
   /** @description Причина принудительного выбытия */
-  leaveReason?: string,
+  leaveReason?: string
 }
 
 interface CreateMembershipProps {
-  studentId: string,
-  clubId: string,
+  studentId: string
+  clubId: string
 
-  clubRole: ClubRole,
-  status: MembershipStatus,
-  source: MembershipSource,
-  applicationId?: string,
+  clubRole: ClubRole
+  status: MembershipStatus
+  source: MembershipSource
+  applicationId?: string
 
-  joinedAt: Date,
-  leftAt?: Date,
-  leaveReason?: string,
+  joinedAt: Date
+  leftAt?: Date
+  leaveReason?: string
 }
 
 /** @description Entity */
@@ -65,7 +65,9 @@ export class Membership extends Entity<MembershipProps> {
    * заглушка
    * @param props заглушка
    */
-  public static createMembershipEntity(props: CreateMembershipProps): Membership {
+  public static createMembershipEntity(
+    props: CreateMembershipProps
+  ): Membership {
     return new Membership({
       ...props,
       id: randomUUID(),
@@ -82,22 +84,47 @@ export class Membership extends Entity<MembershipProps> {
   }
 
   // === Геттеры ===
-  private get version(): number { return this.props.version }
-  private get studentId(): string { return this.props.studentId }
-  private get clubId(): string { return this.props.clubId }
-  private get clubRole(): ClubRole { return this.props.clubRole }
-  private get status(): MembershipStatus { return this.props.status }
-  private get source(): MembershipSource { return this.props.source }
-  private get applicationId(): string | undefined { return this.props.applicationId }
-  private get joinedAt(): Date { return this.props.joinedAt }
-  private get leftAt(): Date | undefined { return this.props.leftAt }
-  private get leaveReason(): string | undefined { return this.props.leaveReason }
+  private get version(): number {
+    return this.props.version
+  }
+  private get studentId(): string {
+    return this.props.studentId
+  }
+  private get clubId(): string {
+    return this.props.clubId
+  }
+  private get clubRole(): ClubRole {
+    return this.props.clubRole
+  }
+  private get status(): MembershipStatus {
+    return this.props.status
+  }
+  private get source(): MembershipSource {
+    return this.props.source
+  }
+  private get applicationId(): string | undefined {
+    return this.props.applicationId
+  }
+  private get joinedAt(): Date {
+    return this.props.joinedAt
+  }
+  private get leftAt(): Date | undefined {
+    return this.props.leftAt
+  }
+  private get leaveReason(): string | undefined {
+    return this.props.leaveReason
+  }
 
   // === checkFunctions ===
   private checkEnums = (): void => {
     const statuses: MembershipStatus[] = [
-      'Active', 'Probation', 'Inactive',
-      'Excluded', 'LeftVoluntarily', 'Graduated', 'Expelled',
+      'Active',
+      'Probation',
+      'Inactive',
+      'Excluded',
+      'LeftVoluntarily',
+      'Graduated',
+      'Expelled',
     ]
     const roles: ClubRole[] = ['Head', 'Deputy', 'Core', 'Member', 'Candidate']
     const sources: MembershipSource[] = ['ApprovedApplication', 'Manual']
@@ -118,7 +145,9 @@ export class Membership extends Entity<MembershipProps> {
   private checkApplicationId = (): void => {
     const fromApplication = this.source === 'ApprovedApplication'
 
-    if (this.applicationId === undefined && !fromApplication) { return }
+    if (this.applicationId === undefined && !fromApplication) {
+      return
+    }
 
     if (this.applicationId === undefined) {
       throw new Error('incorrect applicationId Membership')
@@ -136,7 +165,9 @@ export class Membership extends Entity<MembershipProps> {
       this.status === 'Graduated' ||
       this.status === 'Expelled'
 
-    if (this.leftAt === undefined && !isLeft) { return }
+    if (this.leftAt === undefined && !isLeft) {
+      return
+    }
 
     if (this.leftAt === undefined) {
       throw new Error('incorrect leftAt Membership')
@@ -152,8 +183,7 @@ export class Membership extends Entity<MembershipProps> {
   }
 
   private checkLeaveReason = (): void => {
-    const isForced =
-      this.status === 'Excluded' || this.status === 'Expelled'
+    const isForced = this.status === 'Excluded' || this.status === 'Expelled'
 
     if (isForced && this.leaveReason === undefined) {
       throw new Error('incorrect leaveReason Membership')

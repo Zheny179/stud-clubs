@@ -1,4 +1,4 @@
-import {Entity} from "./shared/Entity.js";
+import { Entity } from './shared/Entity.js'
 import { randomUUID } from 'crypto'
 
 /** @description Тип назначаемого лица: Обучающийся | Сотрудник */
@@ -80,18 +80,34 @@ export class ClubHead extends Entity<ClubHeadProps> {
   }
 
   // === Геттеры и сеттеры ===
-  private get version(): number { return this.props.version }
+  private get version(): number {
+    return this.props.version
+  }
 
-  private get clubId(): string { return this.props.clubId }
+  private get clubId(): string {
+    return this.props.clubId
+  }
 
-  private get assigneeType(): AssigneeType { return this.props.assigneeType }
-  private get assigneeId(): string { return this.props.assigneeId }
+  private get assigneeType(): AssigneeType {
+    return this.props.assigneeType
+  }
+  private get assigneeId(): string {
+    return this.props.assigneeId
+  }
 
-  private get assignedAt(): Date { return this.props.assignedAt }
-  private get assignedById(): string { return this.props.assignedById }
+  private get assignedAt(): Date {
+    return this.props.assignedAt
+  }
+  private get assignedById(): string {
+    return this.props.assignedById
+  }
 
-  private get terminationDate(): Date | undefined { return this.props.terminationDate }
-  private get terminationReason(): string | undefined { return this.props.terminationReason }
+  private get terminationDate(): Date | undefined {
+    return this.props.terminationDate
+  }
+  private get terminationReason(): string | undefined {
+    return this.props.terminationReason
+  }
 
   // === checkFunctions ===
   private checkVersion = (): void => {
@@ -149,7 +165,8 @@ export class ClubHead extends Entity<ClubHeadProps> {
         throw new Error('incorrect terminationDate ClubHead')
       }
 
-      const diff: number = this.terminationDate.getTime() - this.assignedAt.getTime()
+      const diff: number =
+        this.terminationDate.getTime() - this.assignedAt.getTime()
       if (!(diff >= 0)) {
         throw new Error('incorrect terminationDate or assignedAt ClubHead')
       }
@@ -157,12 +174,16 @@ export class ClubHead extends Entity<ClubHeadProps> {
   }
 
   private checkTerminationReason = (): void => {
-    if (this.terminationReason === undefined) { return }
+    if (this.terminationReason === undefined) {
+      return
+    }
 
-    if (!(
-      this.terminationReason.trim().length >= 3 &&
-      this.terminationReason.length <= 500
-    )) {
+    if (
+      !(
+        this.terminationReason.trim().length >= 3 &&
+        this.terminationReason.length <= 500
+      )
+    ) {
       throw new Error('incorrect terminationReason ClubHead')
     }
   }
