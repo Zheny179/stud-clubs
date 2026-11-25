@@ -25,4 +25,20 @@
   );
   --color-scrollbar-thumb: var(--color-border-default);
   --color-scrollbar-track: transparent;
+  --footer-padding-y: #{fluid(40, 25)};
+  --footer-section-padding-y: #{fluid(20, 15)};
+  --footer-main-row-gap: 32px;
+  --footer-main-column-gap: 50px;
+  --footer-nav-row-gap: #{fluid(30, 20)};
+  --footer-nav-column-gap: #{fluid(20, 15)};
+  --footer-stack-gap: 12px;
+  --footer-list-gap: 8px;
+  --footer-bottom-gap: 50px;
+  --footer-brand-max-width: 360px;
+  --footer-column-min-width: 240px;
+  --footer-title-font-size: 18px;
+  --footer-link-font-size: 14px;
+  --footer-meta-font-size: #{fluid(14, 12, 1920)};
+  --footer-link-opacity: 0.8;
+  --footer-divider-blur: 0.5px;
 }

@@ -14,7 +14,8 @@
     "typecheck": "tsc -b",
     "lint": "eslint .",
     "lint:styles": "stylelint \"src/**/*.{scss,css}\"",
-    "lint:styles:fix": "stylelint \"src/**/*.{scss,css}\" --fix"
+    "lint:styles:fix": "stylelint \"src/**/*.{scss,css}\" --fix",
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,mjs,scss,css,json,md}\" --ignore-path .gitignore"
   },
   "dependencies": {
     "@hookform/resolvers": "7.0.6",
