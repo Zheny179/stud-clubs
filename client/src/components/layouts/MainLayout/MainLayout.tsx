@@ -1,3 +1,4 @@
+import { Footer } from '@/components/widgets/Footer'
 import './MainLayout.scss'
 import { Header } from '@/components/widgets/Header'
 import { Outlet } from 'react-router'
@@ -22,6 +23,7 @@ function MainLayout() {
       >
         <Outlet />
       </main>
+      <Footer />
     </div>
   )
 }
