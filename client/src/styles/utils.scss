@@ -7,17 +7,18 @@
 
 .visually-hidden {
   @include visually-hidden;
-}
 
-.visible-laptop {
-  @include laptop-above {
-    display: none !important;
-  }
-}
-
-.hidden-laptop {
-  @include laptop {
-    display: none !important;
+  &:focus-visible {
+    position: fixed !important;
+    inset: var(--space-2) auto auto var(--space-2);
+    z-index: 9999;
+    width: auto !important;
+    height: auto !important;
+    padding: var(--space-2) var(--space-3) !important;
+    background-color: var(--color-bg-elevated);
+    border: var(--border-base);
+    border-radius: var(--border-radius-sm);
+    clip-path: none !important;
   }
 }
 
