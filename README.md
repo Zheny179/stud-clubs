@@ -25,10 +25,8 @@
 ![Prisma](https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white)
 ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
 ![JWT](https://img.shields.io/badge/JWT-%23000000.svg?style=for-the-badge&logo=jsonwebtokens&logoColor=white)
-![dotenv](https://img.shields.io/badge/dotenv-%23ECD53F.svg?style=for-the-badge&logo=dotenv&logoColor=black)
 
 ![PNPM](https://img.shields.io/badge/pnpm-%234a4a4a.svg?style=for-the-badge&logo=pnpm&logoColor=f69220)
-![Docker](https://img.shields.io/badge/docker-%232496ED.svg?style=for-the-badge&logo=docker&logoColor=white)
 ![OpenAPI](https://img.shields.io/badge/OpenAPI-%236BA539.svg?style=for-the-badge&logo=openapiinitiative&logoColor=white)
 ![Git](https://img.shields.io/badge/git-%23F05032.svg?style=for-the-badge&logo=git&logoColor=white)
 ![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-%23FE5196.svg?style=for-the-badge&logo=conventionalcommits&logoColor=white)
@@ -38,15 +36,6 @@
 ![Stylelint](https://img.shields.io/badge/Stylelint-%23263238.svg?style=for-the-badge&logo=stylelint&logoColor=white)
 ![Vitest](https://img.shields.io/badge/Vitest-%236E9F18.svg?style=for-the-badge&logo=vitest&logoColor=white)
 ![Testing Library](https://img.shields.io/badge/Testing%20Library-%23E33332.svg?style=for-the-badge&logo=testinglibrary&logoColor=white)
-![Playwright](https://img.shields.io/badge/Playwright-%232EAD33.svg?style=for-the-badge)
-
-![Recharts](https://img.shields.io/badge/Recharts-%2322B5BF.svg?style=for-the-badge)
-![Lucide](https://img.shields.io/badge/Lucide-%23F56565.svg?style=for-the-badge&logo=lucide&logoColor=white)
-![dayjs](https://img.shields.io/badge/dayjs-%23FF5F5F.svg?style=for-the-badge)
-![PapaParse](https://img.shields.io/badge/PapaParse-%23555555.svg?style=for-the-badge)
-![clsx](https://img.shields.io/badge/clsx-%23555555.svg?style=for-the-badge)
-
-
 
 
 StudClubs объединяет в одном месте сведения о студенческих клубах, приём заявок на вступление и учёт состава участников. Система замещает разрозненные бумажные журналы, электронные таблицы и переписку в мессенджерах: обучающийся находит объединение в публичном каталоге и подаёт заявку, руководитель рассматривает обращения и ведёт состав своего клуба, а отдел воспитательной работы управляет реестром объединений, справочниками и отчётностью. Каждое изменение данных фиксируется в неизменяемом журнале аудита, что делает решения о приёме прозрачными и проверяемыми.
@@ -121,7 +110,7 @@ PostgreSQL — единственный экземпляр операционн�
 | Часть    | Технологии                                                                                                                                     |
 | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
 | Клиент   | React 19, react-router 8, TanStack Query 5, TanStack Table 9, Zustand 5, react-hook-form 7 + Zod 4, Vite 8, SCSS + CSS Modules (БЭМ), recharts 3, dayjs, papaparse, lucide-react |
-| Сервер   | Node.js 22 LTS, Express 4, Prisma 7, dotenv, tsx                                            |
+| Сервер   | Node.js 22 LTS, Express 4, Prisma 7                                            |
 | Общее    | TypeScript 6, pnpm (монорепозиторий), `shared/`, OpenAPI                               |
 | Качество | ESLint 10, Prettier 3, Stylelint 18, `.editorconfig`; испытания — Vitest, Testing Library, Playwright (подключаются)                            |
 
